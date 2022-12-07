@@ -3,7 +3,7 @@ package com.bridgelabz.BST;
 //adding 56 and then
 //adding 30 & 70 - Use INode to create My Binary
 //Check if all are added with using size method in Binary Tree
-
+//Ability to search 63 in the Binary Tree
 public class BinarySearchTree {
     private TreeNode root;
     private class TreeNode{
@@ -46,7 +46,27 @@ public class BinarySearchTree {
         if (root == null)
             return 0;//if tree is empty then return zero
         else
-            return (size(root.left) + 1 + size(root.right));}
+            return (size(root.left) + 1 + size(root.right));
+    }
+
+    public void search(int key) {
+        if (search(root, key) == null) {
+            System.out.println("Node is not present in the BST");
+        } else {
+            System.out.println("Node found in the BST");
+        }
+    }
+
+    public TreeNode search(TreeNode root, int key) {
+        if (root == null || root.data == key) {
+            return root;
+        }
+        if (key < root.data) {
+            return search(root.left, key);
+        } else {
+            return search(root.right, key);
+        }
+    }
     public static void main(String[] args) {
         BinarySearchTree tree = new BinarySearchTree();
         tree.insert(56); //root node
@@ -65,5 +85,6 @@ public class BinarySearchTree {
         tree.inOrder(tree.root);
         System.out.println();
         System.out.println("Size of the given tree is: " + tree.size());
+        tree.search(63);
     }
 }
